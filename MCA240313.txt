@@ -1,0 +1,1665 @@
+
+
+
+
+
+MCA240313
+LAB HANDBOOK
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+SY MCA 3RD SEMESTER
+SRI BALAJI UNIVERSITY PUNE
+
+Table of Contents
+
+Foundations of DevOps and Version Control	5
+Git Setup & Basic Workflow:	5
+Step 1: Create a New Repository on GitHub	5
+Step 2: Clone the Repository to Your Local Machine	5
+Step 3: Create a File and Add it to Staging	5
+Step 4: Commit the Staged Changes	6
+Step 5: Push the Commit to the Remote Repository	6
+Git Branching & Merging:	8
+Step 1: Verify Current State	8
+Step 2: Create and Switch to a New Branch	8
+Step 3: Modify File, Add, and Commit on the Feature Branch	8
+Step 4: Switch Back to the Main Branch	9
+Step 5: Merge the Feature Branch into the Main Branch	9
+Step 6: Push the Updated Main Branch	9
+Simulating Git Collaboration & Conflict Resolution:	10
+Step 1: Make a Change on the main Branch	10
+Step 2: Make a Conflicting Change on a Feature Branch	10
+Step 3: Attempt the Merge and Trigger the Conflict	10
+Step 4: Identify and Resolve the Conflict	11
+Step 5: Stage and Commit the Resolution	11
+Jira Project & Issue Tracking:	13
+Step 1: Sign Up for a Free Jira Cloud Instance	13
+Step 2: Create a New Project (Scrum or Kanban)	13
+Step 3: Create Issues (Story, Task, Bug)	14
+Step 4: View and Move Issues on the Board	14
+Continuous Integration with Jenkins	16
+Prerequisites	16
+Jenkins Setup & Freestyle Project:	16
+Step 1: Install and Run Jenkins using Docker	16
+Step 2: Initial Jenkins Setup (Unlock & Plugins)	16
+Step 3: Create First Admin User & Configure Instance URL	17
+Step 4: Basic Security Configuration	17
+Step 5: Verify Git Plugin Installation	17
+Step 6: Create a Freestyle Project	17
+Step 7: Configure Source Code Management (Git)	18
+Step 8: Add a Simple Build Step	18
+Step 9: Save and Run the Build Manually	19
+Basic Declarative Pipeline:	20
+Step 1: Create a New Pipeline Project	20
+Step 2: Define the Pipeline Script	20
+Step 3: Save and Run the Pipeline	21
+Step 4: Observe Pipeline Execution	21
+Pipeline with Parameters	23
+Step 1: Access and Edit Your Pipeline Configuration	23
+Step 2: Add the parameters Block	23
+Step 3: Modify a steps Block to Use the Parameter	23
+Step 4: Save Your Pipeline Configuration	24
+Step 5: Run the Pipeline Using "Build with Parameters"	24
+Step 6: Verify the Parameter Usage in the Build Output	24
+Containerization with Docker	25
+Dockerfile & Image Build:	25
+Option 1: Python Flask "Hello World" Application	25
+Step 1: Create the Python Application File	25
+Step 2: Create the Requirements File	25
+Step 3: Create the Dockerfile	25
+Step 4: Build the Docker Image	26
+Step 5: Run the Docker Container (Optional but Recommended for Testing)	26
+Option 2: Node.js Express "Hello World" Application	27
+Step 1: Initialize Node.js Project and Install Express	27
+Step 2: Create the Node.js Application File	27
+Step 3: Create the Dockerfile	27
+Step 4: Build the Docker Image	28
+Step 5: Run the Docker Container (Optional but Recommended for Testing)	28
+Container Management & Networking:	30
+Step 1: Run a Container from the Image with Port Mapping	30
+Step 2: Access the Application via Your Browser	30
+Step 3: List Running Containers	30
+Step 4: Stop the Running Container	31
+Step 5: List Running and All Containers	31
+Step 6: Inspect the Container's Network Settings	31
+Step 7: Remove the Stopped Container	31
+Docker Volumes & Data Persistence	33
+Step 1: Modify the Python Application File (app.py)	33
+Step 2: (Optional) Update the Dockerfile	34
+Step 3: Build the New Docker Image	34
+Step 4: Run the Container with a Named Volume Mount	34
+Step 5: Access the Application to Write Data	34
+Step 6: Stop and Remove the Container	35
+Step 7: Run a New Container Mounting the Same Volume	35
+Step 8: Verify Data Persistence	35
+Docker Compose for Multi-Container App:	36
+Step 1: Create Your Project Directory	36
+Step 2: Create the docker-compose.yml File	36
+Step 3: Define Services in docker-compose.yml	36
+Option A: Python Flask App with Redis Database	36
+Option B: Node.js Express App with Postgres Database	37
+Step 4: Save the docker-compose.yml File	38
+Step 5: Start the Multi-Container Application	38
+Step 6: Access the Web Application	38
+Step 7: Verify Service Networking (Conceptual)	38
+Step 8: Stop and Remove the Multi-Container Application	39
+Container Orchestration with Kubernetes	40
+Kubernetes Pod & Deployment:	40
+Step 1: Set Up a Local Kubernetes Cluster	40
+Step 2: Make Your Docker Image Accessible to the Cluster	40
+Step 3: Create a Kubernetes Deployment YAML File	41
+Step 4: Apply the YAML Manifest	42
+Step 5: Verify the Pods Are Created and Running	42
+Step 6: Clean Up (Optional but Recommended)	42
+Kubernetes Service & Networking:	43
+Step 1: Create a Kubernetes Service YAML File	43
+Step 2: Apply the Service YAML Manifest	43
+Step 3: Find the Access Information for the Service	44
+Step 4: Access Your Application Running in the Pods	44
+Step 5: Clean Up (Optional but Recommended)	45
+Integrated DevOps and Advanced Practices	45
+CI/CD: Jenkins Pipeline building Docker Image	45
+Step 1: Access and Edit Your Pipeline Configuration	45
+Step 2: Add a New Stage for Building the Docker Image	45
+Step 3: (Bonus) Add Steps to Push the Image to a Docker Registry	46
+Step 4: Save Your Pipeline Configuration	48
+Step 5: Run the Jenkins Job	48
+Step 6: Verify the Build and Push in the Console Output	48
+Basic Infrastructure as Code (IaC) with Terraform:	49
+Step 1: Install Terraform	49
+Step 2: Create a Project Directory	49
+Step 3: Create the Terraform Configuration File (main.tf)	50
+Step 4: Initialize Terraform	51
+Step 5: Plan the Changes	51
+Step 6: Apply the Changes	51
+Step 7: Modify the Content and Re-apply	51
+Step 8: Destroy the Resource	52
+
+Foundations of DevOps and Version Control
+Git Setup & Basic Workflow:
+Step 1: Create a New Repository on GitHub
+1. Log in to your GitHub account.
+2. Click the + icon in the top-right corner and select "New repository".
+3. Enter a Repository name (e.g., my-git-practice).
+4. Optionally, add a Description.
+5. Choose between Public (visible to anyone) or Private (you control access). For this exercise, either is fine.
+6. Important: Do NOT initialize the repository with a README, .gitignore, or license file yet. We will create the README locally. Leave these options unchecked.
+7. Click the "Create repository" button.
+8. On the next page, you'll see instructions and a URL (HTTPS or SSH). Copy the HTTPS URL. It will look something like https://github.com/your-username/my-git-practice.git.
+
+Step 2: Clone the Repository to Your Local Machine
+1. Open your terminal or command prompt.
+2. Navigate to the directory where you want to store your project locally using the cd (change directory) command. For example: cd Documents/Projects.
+3. Use the git clone command followed by the URL you copied in Step 1:
+Bash
+git clone <paste_the_repository_url_here>
+Replace <paste_the_repository_url_here> with the actual HTTPS URL. Example:
+Bash
+git clone https://github.com/your-username/my-git-practice.git
+or Bash
+git clone https://gitlab.com/your-username/my-git-practice.git
+4. Git will download the repository (which is currently empty except for hidden Git configuration files) into a new folder named after your repository (e.g., my-git-practice).
+5. Navigate into your new project directory:
+Bash
+cd my-git-practice
+
+Step 3: Create a File and Add it to Staging
+1. Inside the my-git-practice directory, create a simple text file named README.md. You can do this using:
+o A text editor (like VS Code, Notepad, Sublime Text, Vim, Nano): Create the file, type some text (e.g., # My Git Practice Project), and save it as README.md.
+o The command line:
+* (Linux/macOS/Git Bash): echo "# My Git Practice Project" > README.md
+* (Windows Command Prompt): echo # My Git Practice Project > README.md
+* (Windows PowerShell): echo "# My Git Practice Project" | Out-File
+-Encoding UTF8 README.md
+2. Now, check the status of your repository:
+
+Bash
+git status
+You should see README.md listed under "Untracked files". This means Git sees the file, but isn't tracking changes to it yet.
+3. Tell Git you want to track this new file and include it in the next snapshot (commit) by adding it to the staging area:
+Bash
+git add README.md
+Alternatively, you could use git add . to stage all new or modified files in the current directory.
+4. Check the status again:
+Bash
+git status
+You should now see README.md listed under "Changes to be committed".
+
+Step 4: Commit the Staged Changes
+1. Now that the file is staged, commit it to your local repository's history. Use the git commit command with the -m flag to provide a descriptive message:
+Bash
+git commit -m "Add initial README.md file"
+o The -m flag allows you to write the commit message inline. If you omit it (git commit), Git will usually open a text editor for you to write a longer message.
+o Good commit messages are crucial! They explain why a change was made.
+2. Check the status one more time:
+Bash
+git status
+It should now say something like "nothing to commit, working tree clean" and mention that your local branch is ahead of origin/main (or origin/master).
+
+Step 5: Push the Commit to the Remote Repository
+1. Your commit currently only exists on your local machine. To share it with the remote repository (GitHub/GitLab), use the git push command:
+Bash
+git push origin main
+o origin: This is the default short name Git gives to the remote repository you cloned from.
+o main: This is the name of the default branch in most modern Git repositories (historically, it was often master). If you cloned an older repository or your setup uses master, you might need to use git push origin master instead. Your git status output in the previous step might give you a hint about the branch name.
+2. You might be prompted to enter your GitHub/GitLab username and password (or a Personal Access Token, which is more secure and often required now instead of passwords).
+3. Once the push is successful, your local commit(s) have been uploaded to the remote repository.
+
+Verification:
+* Go back to your repository page on GitHub or GitLab in your web browser.
+* Refresh the page.
+* You should now see your README.md file listed, along with the commit message you used ("Add initial README.md file").
+
+
+
+Git Branching & Merging:
+Step 1: Verify Current State
+1. Make sure you are in your project's root directory in your terminal.
+Bash
+# Example: cd ~/Documents/Projects/my-git-practice
+2. Check your current branch and status to ensure everything is clean and you are on the main branch:
+Bash
+git status
+o It should report you are on branch main (or master).
+o It should say "nothing to commit, working tree clean".
+o It should indicate your branch is up to date with origin/main (or origin/master).
+
+Step 2: Create and Switch to a New Branch
+1. Create a new branch called feature-update. The convention is often to use prefixes like feature/, bugfix/, hotfix/, but feature-update is fine for this exercise.
+o You can create and switch branches in two steps:
+Bash
+# git branch feature-update # Creates the branch
+# git checkout feature-update # Switches to the branch
+o Or, more commonly, do both in one step using checkout -b:
+Bash
+git checkout -b feature-update
+2. Verify you are now on the new branch:
+Bash
+git branch
+o This command lists all local branches. The current branch will have an asterisk (*) next to it (e.g.,
+* feature-update).
+o git status will also show On branch feature-update.
+
+Step 3: Modify File, Add, and Commit on the Feature Branch
+1. Open the README.md file in a text editor.
+2. Add a new line of text, for example: "This update adds details about a new feature." Save the file.
+3. Check the status to see the modification:
+Bash
+git status
+o You'll see README.md listed under "Changes not staged for commit".
+4. Stage the changes using git add:
+Bash
+git add README.md
+5. Commit the staged changes to the feature-update branch:
+Bash
+git commit -m "Update README on feature branch"
+6. Check the status again:
+Bash
+git status
+o It should now report "nothing to commit, working tree clean" for the feature-update branch.
+
+
+
+Step 4: Switch Back to the Main Branch
+1. Switch back to your main development branch. This is typically main or master.
+Bash
+git checkout main
+(If your main branch is named master, use git checkout master)
+2. Observe: Open README.md again or view its content using cat README.md (Linux/macOS) or type README.md (Windows). You will see that the line you added in Step 3 is gone. This is because you are now back on the main branch, which does not yet have the commit you made on feature-update.
+
+Step 5: Merge the Feature Branch into the Main Branch
+1. Ensure you are still on the receiving branch (main or master). git status or git branch can confirm this.
+2. Execute the merge command, specifying the branch you want to merge into the current branch (main):
+Bash
+git merge feature-update
+3. Git will perform the merge. Since you didn't make any other changes on main after creating feature- update, this will likely be a "fast-forward" merge. Git simply moves the main branch pointer forward to point to the same commit as feature-update. The output might look like:
+4. Updating <hash1>..<hash2>
+5. Fast-forward
+6. README.md | 1 +
+7. 1 file changed, 1 insertion(+)
+(If there had been divergent changes on both branches, Git would attempt a true merge, potentially creating a new "merge commit").
+8. Observe: Check the content of README.md again. The line you added on the feature-update
+branch should now be present in the file while you are on the main branch.
+
+Step 6: Push the Updated Main Branch
+1. The merge has updated your local main branch. Now, you need to update the remote main branch on GitHub/GitLab.
+2. Push the changes from your local main branch to origin (the remote):
+Bash
+git push origin main
+(Again, use master if that's your main branch name: git push origin master)
+
+Verification:
+* Go to your repository page on GitHub or GitLab in your web browser.
+* Make sure you are viewing the main (or master) branch.
+* Refresh the page.
+* The README.md file should show the content including the line added on the feature branch.
+* Check the commit history online. You should see both your initial commit and the "Update README on feature branch" commit (or a merge commit depending on the exact history).
+
+Simulating Git Collaboration & Conflict Resolution:
+Step 1: Make a Change on the main Branch
+1. Ensure you are in your project's root directory.
+2. Switch to your main branch (main or master) and make sure it's clean:
+Bash
+git checkout main git status
+# If not clean, commit or stash changes first.
+# If collaborating, run 'git pull origin main' to get latest updates.
+3. Open README.md in a text editor.
+4. Modify the first line of the file. For example, if it currently says # My Git Practice Project, change it to:
+Markdown
+# My Git Practice Project (Main Update)
+(Make sure to remember roughly what the original line was for the next step).
+5. Save the file.
+6. Stage and commit this change on the main branch:
+Bash
+git add README.md
+git commit -m "Update README first line on main"
+
+Step 2: Make a Conflicting Change on a Feature Branch
+1. Create and switch to a new branch. Let's call it conflicting-feature. (If you still have feature- update from the last exercise and deleted it, you can reuse that name. Using a new name avoids confusion).
+Bash
+git checkout -b conflicting-feature
+Note: This branch is created based on the commit before the one you just made on main.
+2. Open README.md again in the text editor. Because you branched off before the commit in Step 1, the first line should still be the original version (e.g., # My Git Practice Project).
+3. Modify the same first line but make a different change than you did on main. For example:
+Markdown
+# Awesome Git Practice Project (Feature Update)
+4. Save the file.
+5. Stage and commit this change on the conflicting-feature branch:
+Bash
+git add README.md
+git commit -m "Update README first line on feature branch"
+
+Step 3: Attempt the Merge and Trigger the Conflict
+1. Switch back to the branch you want to merge into, which is main:
+Bash
+git checkout main
+2. Attempt to merge the conflicting-feature branch into main:
+Bash
+git merge conflicting-feature
+
+3. Observe the Output: Git will try to merge automatically, fail, and report the conflict. The output will look something like this:
+4. Auto-merging README.md
+5. CONFLICT (content): Merge conflict in README.md
+6. Automatic merge failed; fix conflicts and then commit the result.
+7. Check the status:
+Bash
+git status
+o Git will explicitly tell you that you have "unmerged paths".
+o README.md will be listed under this section.
+o It will also give you hints: (fix conflicts and run "git commit") and (use "git merge --abort" to abort the merge).
+
+Step 4: Identify and Resolve the Conflict
+1. Open the conflicting file (README.md) in your text editor.
+2. Look for the conflict markers that Git inserted. They clearly delimit the conflicting sections from both branches:
+Markdown
+<<<<<<< HEAD
+# My Git Practice Project (Main Update)
+=======
+# Awesome Git Practice Project (Feature Update)
+>>>>>>> conflicting-feature
+(Any other content in the file will be outside these markers)
+o <<<<<<< HEAD: Marks the beginning of the content from your current branch (main because HEAD points to main).
+o =======: Separates the conflicting content from the two branches.
+o >>>>>>> conflicting-feature: Marks the end of the content from the branch you are trying to merge (conflicting-feature).
+3. Resolve the conflict: You need to manually edit this section to look exactly how you want the final version to be. This involves:
+o Deciding which change to keep, or combining them, or writing something entirely new.
+o Deleting all the conflict markers (<<<<<<< HEAD, =======, >>>>>>> conflicting- feature).
+o Example Resolution: Let's decide to combine the ideas into a new first line. Edit the file so the entire content looks like this (removing the markers and choosing the final version):
+Markdown
+# My Awesome Git Practice Project (Resolved Conflict) (Any other content in the file)
+4. Save the README.md file after making your edits.
+
+Step 5: Stage and Commit the Resolution
+1. After editing the file and saving your resolution, you need to tell Git that you've resolved the conflict in that file by staging it:
+Bash
+git add README.md
+2. Check the status again:
+
+Bash
+git status
+o It should now say All conflicts fixed but you are still merging.
+o README.md will be listed under "Changes to be committed".
+3. Complete the merge by making a commit. Git usually prepares a default merge commit message for you. You can simply run:
+Bash
+git commit
+o This will likely open your default text editor (like Vim, Nano) with a pre-filled message, such as
+Merge branch 'conflicting-feature'.
+o You can leave this message as is, or modify it if you wish.
+o Save and close the editor (e.g., in Vim, type :wq and press Enter; in Nano, press Ctrl+X, then
+Y, then Enter).
+o Alternatively, you could provide a message directly: git commit -m "Merge branch 'conflicting-feature', resolving README conflict"
+
+Verification:
+* Check the content of README.md locally; it should match your resolved version.
+* Examine git log --oneline --graph; you should see the merge commit connecting the two lines of development.
+* If pushed, check the main branch on GitHub/GitLab. The README.md file should be updated, and the commit history should reflect the merge.
+
+Jira Project & Issue Tracking:
+Step 1: Sign Up for a Free Jira Cloud Instance
+1. Navigate to the Signup Page: Open your web browser and go to the Atlassian Jira Free plan page. A good starting point is usually https://www.atlassian.com/software/jira/free. (You can also search for "Jira Cloud Free").
+2. Start Signup: Look for buttons like "Get it free" or "Sign up free" and click on one.
+3. Create Atlassian Account: You'll likely be prompted to sign up for an Atlassian account. You can usually sign up with your email address and a password, or often use existing Google or Microsoft accounts. Follow the prompts.
+4. Set Up Your Site: During the signup, you'll need to choose a unique name for your Jira site. This will form your Jira URL (e.g., your-chosen-name.atlassian.net). Choose something relevant to you or your team/project.
+5. Select Product & Plan: Ensure "Jira Software" is selected. When prompted for a plan, choose the Free
+plan. This plan typically allows up to 10 users and offers core Jira functionality, sufficient for this exercise.
+6. Initial Questions (Optional): Jira might ask some questions about your team size, role, or how you intend to use Jira. You can often skip these or provide simple answers. Once ready, you should be logged into your new Jira Cloud instance.
+
+Step 2: Create a New Project (Scrum or Kanban)
+1. Find "Create Project": Once logged into your Jira site (your-chosen-name.atlassian.net), look for a prominent button or menu option like "Create project". This might be in the main navigation menu (often on the left or top) or on the dashboard.
+2. Choose a Template: Jira offers various project templates. You need to choose either Kanban or Scrum.
+o Kanban: Good for continuous flow, visualizing work, and managing tasks with a simple workflow (e.g., To Do, In Progress, Done). Often recommended for simpler projects or service-oriented teams.
+o Scrum: Designed for iterative development in fixed-length cycles called "sprints". Includes features like Backlogs for planning future work and Sprint Boards for tracking current sprint work. Often used for product development.
+o For this exercise, select either "Kanban" or "Scrum". Find the relevant template (it might just be called "Kanban" or "Scrum") and click "Use template" or "Select".
+3. Select Project Type (if prompted): You might be asked to choose between "Team-managed" and "Company-managed".
+o Team-managed: Simpler configuration, managed by the project team. Recommended for this exercise if the option is presented clearly.
+o Company-managed: More powerful customization, shared configurations across projects, typically managed by Jira administrators.
+o Select "Team-managed" if available.
+4. Enter Project Details:
+o Name: Give your project a meaningful name (e.g., My Website Project).
+o Key: Jira will automatically suggest a short Key (e.g., MWP). This key prefixes all issue IDs in this project (e.g., MWP-1, MWP-2). You can usually customize it, but the suggestion is often fine.
+5. Create: Click the "Create project" or "Next" button to finalize the project setup. You should be taken to your new project's main page or board.
+
+
+Step 3: Create Issues (Story, Task, Bug)
+1. Locate the "Create" Button: Find the main "Create" button. It's usually located prominently in the top navigation bar of Jira.
+2. Create the Story:
+o Click "Create". A dialog box or screen will appear.
+o Ensure the Project selected is the one you just created (My Website Project).
+o Change the Issue Type to Story. (Stories typically represent user-facing features or requirements).
+o In the Summary field (the title), enter: Develop login page.
+o (Optional) Add a Description like "User should be able to log in using email and password."
+o Click Create.
+3. Create the Task:
+o Click "Create" again.
+o Ensure the correct Project is selected.
+o Change the Issue Type to Task. (Tasks usually represent work items needed to support development, chores, or actions).
+o In the Summary, enter: Set up database.
+o Click Create.
+4. Create the Bug:
+o Click "Create" one more time.
+o Ensure the correct Project is selected.
+o Change the Issue Type to Bug. (Bugs represent defects or problems in the product).
+o In the Summary, enter: Submit button not working.
+o (Optional) Add a Description like "Clicking the submit button on the contact form does nothing."
+o Click Create.
+
+Step 4: View and Move Issues on the Board
+1. Navigate to the Board: If you're not already there, use the left-hand project sidebar menu to navigate to your project's Board.
+o If you chose Kanban, it will likely be called "Kanban board".
+o If you chose Scrum, it might be called "Board" or "Active sprints". (Note: In Scrum, newly created issues often land in the "Backlog" first. You might need to navigate to the "Backlog" view, select issues, and move them to a new or existing Sprint to make them appear on the active Sprint Board's "To Do" column). For simplicity, we'll assume Kanban or that you've moved issues to the active sprint in Scrum.
+2. Identify Board Columns: Observe the columns on the board. A typical simple workflow is:
+o To Do (or Open)
+o In Progress
+o Done (or Closed, Resolved) Your template might have slightly different names or additional columns.
+3. See Initial State: Your newly created issues (Develop login page, Set up database, Submit button not working) should appear as cards in the leftmost column (To Do).
+4. Simulate Work: Drag and drop the issue cards to represent work progression:
+o Drag the "Set up database" (Task) card from the To Do column to the In Progress column. (You've started working on it).
+o Drag the "Develop login page" (Story) card from To Do to In Progress. (Work has begun on the story).
+
+o Imagine some time passes. Drag the "Set up database" (Task) card from In Progress to the
+Done column. (You've finished setting up the database).
+o Drag the "Submit button not working" (Bug) card from To Do to In Progress. (Someone started investigating the bug).
+o Imagine more time passes. Drag the "Develop login page" (Story) card from In Progress to
+Done.
+o Drag the "Submit button not working" (Bug) card from In Progress to Done. (The bug has been fixed and verified).
+
+Verification:
+* You have successfully created three different types of issues in your Jira project.
+* You can see these issues visually represented as cards on your Kanban or Scrum board.
+* You were able to change the status of these issues by dragging and dropping them between workflow columns (e.g., To Do -> In Progress -> Done).
+
+Continuous Integration with Jenkins
+Prerequisites:
+1. Docker: You need Docker installed and running on your machine. Download it from https://www.docker.com/products/docker-desktop/. Verify by opening a terminal/command prompt and running docker --version.
+2. Git Repository URL: Have the HTTPS URL of the Git repository you created in Exercise 1 (from GitHub or GitLab) ready. E.g., https://github.com/your-username/my-git-practice.git.
+3. Web Browser: Chrome, Firefox, Edge, etc.
+4. Terminal/Command Prompt: For running Docker commands.
+
+Jenkins Setup & Freestyle Project:
+Step 1: Install and Run Jenkins using Docker
+1. Open Terminal: Launch your terminal or command prompt.
+2. Pull & Run Jenkins Image: Use the following command to download the official Jenkins Long-Term Support (LTS) image and run it in a container. This command also sets up persistent storage using a Docker volume, so your Jenkins data isn't lost when the container stops.
+Bash
+docker run \
+-d \
+-p 8080:8080 \
+-p 50000:50000 \
+-v jenkins_home:/var/jenkins_home \
+--name myjenkins \ jenkins/jenkins:lts-jdk17
+o -d: Run detached (in the background).
+o -p 8080:8080: Map port 8080 on your host machine to port 8080 inside the container (for the Jenkins web UI).
+o -p 50000:50000: Map port 50000 (used for Jenkins agent communication).
+o -v  jenkins_home:/var/jenkins_home:	Create/use	a	Docker	volume	named
+jenkins_home to store Jenkins data persistently outside the container.
+o --name myjenkins: Give the container a recognizable name (myjenkins).
+o jenkins/jenkins:lts-jdk17: The official Jenkins LTS image using Java 17. Check Docker Hub for the latest recommended LTS tag if needed.
+3. Verify Container: Check if the container is running:
+Bash
+docker ps
+You should see an entry for the myjenkins container with the jenkins/jenkins:lts-jdk17 image, showing the port mappings. It might take a minute or two for Jenkins to fully start up inside the container.
+(Alternative Installations: While Docker is recommended here, Jenkins can also be installed via native packages (apt, yum), Homebrew on macOS, or by downloading the jenkins.war file and running java -jar jenkins.war if you have Java installed.)
+
+Step 2: Initial Jenkins Setup (Unlock & Plugins)
+1. Access Jenkins: Open your web browser and go to http://localhost:8080.
+
+2. Unlock Jenkins: You'll see an "Unlock Jenkins" page asking for an initial administrator password. Jenkins generates this password and stores it inside the container. Retrieve it using one of these commands in your terminal:
+o Using container logs (might need to wait a bit after starting):
+Bash
+docker logs myjenkins
+Look for a block of text surrounded by asterisks containing the password.
+o Using docker exec (more direct):
+Bash
+docker	exec	myjenkins	cat
+/var/jenkins_home/secrets/initialAdminPassword
+o Copy the long alphanumeric password displayed.
+o Paste the password into the "Administrator password" field in your browser and click "Continue".
+3. Customize Jenkins - Plugins: You'll be asked to install plugins.
+o Select "Install suggested plugins". This installs a standard set of useful plugins, including Git, Pipeline, and others needed for typical operation.
+o Wait for the plugins to be downloaded and installed. This can take several minutes depending on your internet connection.
+
+Step 3: Create First Admin User & Configure Instance URL
+1. Create Admin User: After plugin installation, you'll be prompted to create the first admin user.
+o Fill in a Username, Password, Full name, and Email address. Remember these credentials - you'll use them to log in later.
+o Click "Save and Continue".
+2. Instance Configuration: Jenkins will ask you to confirm the URL for your Jenkins instance.
+o It should default to http://localhost:8080/. Verify this is correct.
+o Click "Save and Finish".
+3. Jenkins is Ready: Click "Start using Jenkins". You will be redirected to the Jenkins dashboard, logged in as the admin user you just created.
+
+Step 4: Basic Security Configuration
+* The initial setup wizard already handled the most basic security steps: requiring login (by creating the admin user) and setting up the initial password.
+* For this exercise, the default security enabled during setup is sufficient. (You can explore more options later under "Manage Jenkins" > "Security").
+
+Step 5: Verify Git Plugin Installation
+1. On the Jenkins dashboard, click "Manage Jenkins" in the left sidebar.
+2. Click on "Plugins".
+3. Go to the "Installed Plugins" tab.
+4. In the filter/search box, type Git plugin.
+5. You should see "Git plugin" listed, confirming it was installed as part of the suggested plugins. (If not, you would go to "Available plugins", search for it, check the box, and install it).
+
+Step 6: Create a Freestyle Project
+1. Go back to the main Jenkins Dashboard (click the Jenkins logo or "Dashboard").
+2. Click on "New Item" in the left sidebar.
+
+3. Enter an item name, for example: Git-Practice-Build.
+4. Select the "Freestyle project" option.
+5. Click "OK". You'll be taken to the project's configuration page.
+
+Step 7: Configure Source Code Management (Git)
+1. In the project configuration page, scroll down to the "Source Code Management" (SCM) section.
+2. Select the "Git" radio button.
+3. In the "Repository URL" field, paste the HTTPS URL of your Git repository from Exercise 1 (e.g.,
+https://github.com/your-username/my-git-practice.git).
+4. Credentials:
+o If your repository is public, you can usually leave the "Credentials" dropdown as "- none -".
+o If your repository is private, you'll need to add credentials:
+* Click the "Add" button next to Credentials -> choose "Jenkins".
+* Kind: Select "Username with password".
+* Username: Enter your GitHub/GitLab username.
+* Password: Enter your GitHub/GitLab password OR preferably a Personal Access Token (PAT). PATs are more secure and recommended. You'll need to generate one in your GitHub/GitLab account settings with appropriate permissions (e.g., repo scope).
+* ID: Give it a recognizable ID (e.g., my-github-creds).
+* Description: Optional description.
+* Click "Add".
+* Now, select the newly added credential from the "Credentials" dropdown.
+5. Branches to build:
+o The default "Branch Specifier" is usually */main or */master. Jenkins typically auto-detects the primary branch (main for newer repos, master for older ones). Leave the default for now. If the build fails to find the branch, you can explicitly set it here (e.g., */main).
+
+Step 8: Add a Simple Build Step
+1. Scroll down further to the "Build Steps" section.
+2. Click the "Add build step" dropdown menu.
+3. Select "Execute shell" (since the Docker container runs Linux).
+4. In the "Command" text area, enter some simple shell commands. For example: Bash
+echo "	"
+echo "BUILDING: ${JOB_NAME}, BUILD #${BUILD_NUMBER}" # Use Jenkins
+environment variables
+echo "Workspace: ${WORKSPACE}"
+echo "	"
+echo "Listing files checked out from Git:" ls -la
+echo "	"
+echo "Contents of README.md:" cat README.md
+echo "	"
+echo "Hello Jenkins!"
+
+
+Step 9: Save and Run the Build Manually
+1. Scroll to the bottom of the project configuration page and click "Save". You'll be taken to the main page for your Git-Practice-Build project.
+2. In the left sidebar for the project, click "Build Now".
+3. Look at the "Build History" box (usually bottom-left). You'll see a build number (#1) appear. Its status icon will likely blink while running and then turn:
+o Blue: Success
+o Red: Failure
+4. Click on the build number (#1) in the Build History.
+5. On the build page, click "Console Output" in the left sidebar.
+6. Examine the Console Output: You should see logs showing:
+o Jenkins starting the build.
+o Checking out the revision from your specified Git repository URL and branch.
+o The execution of your shell commands (the echo statements, the output of ls -la showing
+README.md, and the output of cat README.md showing its content).
+o A Finished: SUCCESS message at the end (if everything worked).
+
+Concepts Review:
+* Jenkins Installation: You set up the Jenkins server using Docker.
+* Configuration: You performed the initial setup (unlocking, admin user, URL).
+* Plugin Management: You installed suggested plugins, verifying the essential Git plugin was present.
+* Freestyle Projects: You created a basic job type configured via the UI.
+* SCM Integration (Git): You configured the job to pull code from your Git repository.
+* Build Steps: You added an action ("Execute shell") for Jenkins to perform.
+* Build & Console Output: You manually triggered a run of the job and inspected its detailed log output.
+
+Basic Declarative Pipeline:
+Step 1: Create a New Pipeline Project
+1. Navigate to Dashboard: Go to your Jenkins dashboard (http://localhost:8080).
+2. New Item: Click on "New Item" in the left sidebar.
+3. Enter Name: Give your project a name, for example: Declarative-Pipeline-Demo.
+4. Select Type: Choose the "Pipeline" project type. This is different from the "Freestyle project" you created earlier.
+5. Click OK: Click the "OK" button. This will take you to the configuration page for your new Pipeline project.
+
+Step 2: Define the Pipeline Script
+1. Scroll to Pipeline Section: On the configuration page, scroll down until you find the "Pipeline" section. This is where you define the build process.
+2. Select Definition: Ensure the "Definition" dropdown is set to "Pipeline script". This allows you to type your pipeline code directly into the Jenkins UI. (Note: A common best practice for real projects is "Pipeline script from SCM", where Jenkins reads a Jenkinsfile from your Git repository, but for this exercise, we'll write it directly here.)
+3. Write the Declarative Script: Enter the following code into the "Script" text area. Replace 'https://github.com/your-username/my-git-practice.git' with the actual URL of your repository and adjust 'main' if your branch is named differently (e.g., master).
+Groovy
+pipeline {
+     agent any // 1. Define Agent: Run on any available Jenkins agent/executor
+stages { // 2. Define Stages: Container for all the work phases stage('Checkout Source Code') { // 3. Define Stage 1: Checkout
+steps { // 4. Define Steps for Stage 1 echo 'Starting Git checkout...'
+                   git	url:	'https://github.com/your-username/my-git- practice.git', branch: 'main'
+// If your repo is private, you might need:
+// credentialsId: 'your-jenkins-credential-id' echo 'Git checkout completed.'
+}
+}
+
+
+
+
+
+
+
+
+
+file
+
+stage('Run Example Command') { // 5. Define Stage 2: Run Command steps { // 6. Define Steps for Stage 2
+echo 'Executing a shell command...'
+// Use 'sh' for Linux/macOS agents, 'bat' for Windows sh 'echo "Hello from Declarative Pipeline!"'
+sh 'echo --- Reading README ---'
+sh 'cat README.md' // Verify checkout by reading the
+
+}
+}
+
+
+// You could add more stages here (e.g., Build, Test, Deploy)
+
+} // End of stages
+
+// Optional: Add post actions that run after all stages
+// post {
+//	always {
+//	echo 'Pipeline finished.'
+//	}
+// }
+
+} // End of pipeline
+Explanation of the Code:
+1. pipeline { ... }: This block encloses the entire Declarative Pipeline definition.
+2. agent any: Specifies that this pipeline can run on any available Jenkins agent (in our simple Docker setup, this means it runs on the main Jenkins server itself).
+3. stages { ... }: Contains the sequence of stages that make up the pipeline.
+4. stage('Stage Name') { ... }: Defines a distinct phase of the pipeline (e.g., "Checkout Source Code", "Run Example Command"). These stages are visualized in the Jenkins UI.
+5. steps { ... }: Contains the actual commands or actions to be executed within a specific stage.
+6. echo 'message': A simple step that prints a message to the build log.
+7. git url: '...', branch: '...': The step provided by the Git plugin to check out code from a repository. Replace the URL and branch name accordingly. If your repo is private, you would add a credentialsId parameter, pointing to credentials stored in Jenkins (similar to the Freestyle job).
+8. sh 'command': Executes a shell command (on Linux/macOS based agents/controllers). For Windows agents, you'd use bat 'command'. We use sh because the jenkins/jenkins:lts-jdk17 Docker image is Linux-based.
+
+Step 3: Save and Run the Pipeline
+1. Save: Scroll to the bottom of the configuration page and click "Save". This will take you to the main page for your Declarative-Pipeline-Demo project.
+2. Build Now: In the left sidebar, click "Build Now" to start the pipeline execution.
+
+Step 4: Observe Pipeline Execution
+1. Stage View: On the project page, you'll see a "Stage View" appear. This gives a visual representation of your pipeline's stages (Checkout Source Code, Run Example Command). Watch as the stages run; they should turn green upon successful completion.
+2. Build History: Notice the build number (#1) appearing in the "Build History" box (usually bottom-left).
+3. Console Output: Click on the build number (#1) and then select "Console Output" from the left sidebar.
+4. Verify Log: Examine the console output. You should see:
+o Messages indicating the start and end of each stage.
+o Output from the echo steps.
+o Logs from the git step showing the checkout process.
+o The output from your sh commands, including "Hello from Declarative Pipeline!"
+and the content of your README.md file.
+o A Finished: SUCCESS message at the end.
+
+
+
+Concepts Review:
+* Jenkins Pipelines: A powerful way to define your entire build, test, and deployment process as code using a Groovy-based Domain Specific Language (DSL). Enables "Pipeline as Code".
+* Declarative Syntax: A structured and simpler syntax for defining Jenkins Pipelines (pipeline, agent, stages, stage, steps).
+* Agent: Defines the execution environment (where the pipeline runs). agent any is the simplest form.
+* Stages: Top-level logical divisions of work in the pipeline, visualized in the UI.
+* Stage: A specific phase within the stages block.
+* Steps: The specific actions or commands executed within a stage.
+
+Pipeline with Parameters:
+Step 1: Access and Edit Your Pipeline Configuration
+1. Log in to your Jenkins instance.
+2. Navigate to the Dashboard.
+3. Find the pipeline job you created in Exercise 6 and click on its name.
+4. Click on "Configure" in the left-hand menu.
+5. Scroll down to the "Pipeline" section where you define your pipeline script (usually in a text area labeled "Script").
+Step 2: Add the parameters Block
+1. Inside the main pipeline block, but outside of the stages block, add a parameters block. This block is where you define the inputs your pipeline will accept.
+2. Within the parameters block, define a string parameter. The basic syntax for a string parameter is string(name: 'PARAMETER_NAME', defaultValue: 'Default Value', description: 'Parameter Description').
+Replace:
+o PARAMETER_NAME with the desired name for your parameter (e.g., GREETING_NAME).
+o Default Value with an optional default value that will be used if no value is provided during the build (e.g., 'World').
+o Parameter Description with a brief explanation of what the parameter is for (e.g., 'The name to use in the greeting').
+Your pipeline script should now look something like this (assuming a basic structure from Exercise 6):
+Groovy
+pipeline {
+agent any // Or your preferred agent configuration parameters {
+          string(name:	'GREETING_NAME',	defaultValue:	'World', description: 'The name to use in the greeting')
+}
+stages {
+// Your existing stages will go here
+}
+}
+Step 3: Modify a steps Block to Use the Parameter
+1. Navigate to the stages block and find the stage and steps block where you want to use the parameter.
+2. Inside the steps block, modify an existing step or add a new one to use the parameter value. You can access the value of a parameter using the params object followed by the parameter name (e.g., params.GREETING_NAME).
+For an echo step, you would use string interpolation with double quotes:
+Groovy
+pipeline {
+agent any // Or your preferred agent configuration parameters {
+          string(name:	'GREETING_NAME',	defaultValue:	'World', description: 'The name to use in the greeting')
+}
+stages {
+
+stage('Greeting') { // Example stage steps {
+echo "Hello ${params.GREETING_NAME}" // Using the
+parameter
+}
+}
+// Other stages from Exercise 6
+}
+}
+Step 4: Save Your Pipeline Configuration
+1. Scroll down to the bottom of the job configuration page.
+2. Click the "Save" or "Apply" button to save the changes to your pipeline script.
+Step 5: Run the Pipeline Using "Build with Parameters"
+1. After saving, you will be redirected to the job's main page.
+2. You should now see a "Build with Parameters" option in the left-hand menu instead of just "Build Now". Click on "Build with Parameters".
+3. A new screen will appear, displaying the parameters you defined. You will see an input field for
+GREETING_NAME with its default value (if you provided one).
+4. Enter a value for the GREETING_NAME parameter (e.g., Jenkins User).
+5. Click the "Build" button at the bottom of the parameters screen.
+Step 6: Verify the Parameter Usage in the Build Output
+1. The pipeline build will start. You will see a new build in the "Build History" on the left.
+2. Click on the build number that just started.
+3. Click on "Console Output" in the left-hand menu.
+4. Examine the console output. You should see the output of your modified step, using the value you provided for the GREETING_NAME parameter during the "Build with Parameters" step (e.g., Hello Jenkins User).
+
+Containerization with Docker
+Dockerfile & Image Build:
+Option 1: Python Flask "Hello World" Application
+This option creates a very simple web server using the Flask microframework in Python.
+Step 1: Create the Python Application File
+1. Create a new directory for your application (e.g., my-flask-app).
+2. Inside this directory, create a file named app.py with the following content:
+Python
+from flask import Flask
+app = Flask( name ) @app.route('/')
+def hello_world():
+return 'Hello, Docker!'
+
+if  name  == ' main ': app.run(debug=True, host='0.0.0.0')
+o This code creates a Flask application.
+o The @app.route('/') decorator means the hello_world function will be executed when the root URL (/) is accessed.
+o app.run(debug=True, host='0.0.0.0') starts the web server. host='0.0.0.0'
+makes the server accessible externally from the container.
+Step 2: Create the Requirements File
+1. In the same directory (my-flask-app), create a file named requirements.txt with the following content:
+2. Flask==2.1.2
+o This file lists the Python dependencies required by your application. We specify a version of Flask for reproducibility. (You can check for the latest compatible version if needed).
+Step 3: Create the Dockerfile
+1. In the same directory (my-flask-app), create a file named Dockerfile (with no file extension) with the following content:
+Dockerfile
+# Use a slim version of the Python 3.9 base image FROM python:3.9-slim
+
+# Set the working directory inside the container WORKDIR /app
+
+# Copy the requirements file into the working directory COPY requirements.txt .
+
+# Install the Python dependencies
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copy the application code into the working directory
+
+COPY . .
+
+# Expose the port the application listens on EXPOSE 5000
+
+# Define the command to run the application CMD ["python", "app.py"]
+o FROM python:3.9-slim: Specifies the base image for your Docker image. We use a slim Python image to keep the image size down.
+o WORKDIR /app: Sets the current working directory inside the container to /app. Subsequent instructions like COPY and RUN will be executed in this directory.
+o COPY requirements.txt .: Copies the requirements.txt file from your local machine to the current working directory (/app) inside the container.
+o RUN pip install --no-cache-dir -r requirements.txt: Executes the pip install command inside the container to install the dependencies listed in requirements.txt. --no-cache-dir reduces the image size.
+o COPY . .: Copies all files from your current local directory (my-flask-app) into the current working directory (/app) inside the container. This includes app.py.
+o EXPOSE 5000: Informs Docker that the container will listen on port 5000 at runtime. This is just documentation; you'll need to map the port when running the container.
+o CMD ["python", "app.py"]: Specifies the command to run when the container starts. This will execute your Python application.
+Step 4: Build the Docker Image
+1. Open your terminal or command prompt.
+2. Navigate to the my-flask-app directory where your app.py, requirements.txt, and
+Dockerfile are located.
+3. Run the following command to build the Docker image:
+Bash
+docker build -t my-flask-app .
+o docker build: The command to build a Docker image.
+o -t my-flask-app: Tags the image with the name my-flask-app. You can replace this with your desired image name. The tag helps you identify the image later.
+o .: Specifies the build context, which is the current directory (.). Docker will look for the
+Dockerfile in this directory and use the files within this directory for the COPY instructions.
+4. You should see output indicating the steps being executed as Docker builds the image layer by layer. If the build is successful, you will see a message indicating the image has been built.
+Step 5: Run the Docker Container (Optional but Recommended for Testing)
+1. To test your image, run a container from it:
+Bash
+docker run -p 5000:5000 my-flask-app
+o docker run: The command to run a Docker container.
+o -p 5000:5000: Maps port 5000 on your host machine to port 5000 inside the container. This allows you to access the web server from your browser.
+o my-flask-app: The name of the image to run.
+2. Open your web browser and go to http://localhost:5000. You should see the "Hello, Docker!" message.
+
+3. Press Ctrl+C in the terminal where the container is running to stop the container.
+
+Option 2: Node.js Express "Hello World" Application
+This option creates a simple web server using the Express framework in Node.js.
+Step 1: Initialize Node.js Project and Install Express
+1. Create a new directory for your application (e.g., my-node-app).
+2. Open your terminal or command prompt and navigate to this directory.
+3. Initialize a Node.js project:
+Bash
+npm init -y
+o This creates a package.json file with default values. The -y flag accepts all defaults.
+4. Install Express:
+Bash
+npm install express
+o This installs the Express library and adds it as a dependency in your package.json.
+Step 2: Create the Node.js Application File
+1. In the my-node-app directory, create a file named server.js (or app.js) with the following content:
+JavaScript
+const express = require('express'); const app = express();
+const port = 3000; // Or any other port you prefer
+
+app.get('/', (req, res) => {
+res.send('Hello, Docker!');
+});
+
+app.listen(port, '0.0.0.0', () => {
+console.log(`App listening at http://localhost:${port}`);
+});
+o This code creates an Express application.
+o app.get('/') defines a route handler for GET requests to the root URL (/).
+o res.send('Hello, Docker!') sends the "Hello, Docker!" response.
+o app.listen(port, '0.0.0.0', ...) starts the web server. 0.0.0.0 makes the server accessible externally from the container.
+Step 3: Create the Dockerfile
+1. In the my-node-app directory, create a file named Dockerfile (with no file extension) with the following content:
+Dockerfile
+# Use the Node.js 18-alpine base image (alpine is a lightweight Linux distribution)
+FROM node:18-alpine
+
+# Set the working directory inside the container WORKDIR /app
+
+# Copy the package.json and package-lock.json files
+
+# We copy these first to leverage Docker's layer caching COPY package*.json ./
+
+# Install the Node.js dependencies RUN npm install
+
+# Copy the application code into the working directory COPY . .
+
+# Expose the port the application listens on EXPOSE 3000
+
+# Define the command to run the application CMD ["node", "server.js"]
+o FROM node:18-alpine: Specifies the base image. Using an Alpine-based image results in a smaller image size.
+o WORKDIR /app: Sets the working directory inside the container.
+o COPY package*.json ./: Copies the package.json and potentially package- lock.json files to the working directory. Doing this before running npm install allows Docker to cache the dependencies layer if your package.json doesn't change, speeding up subsequent builds.
+o RUN npm install: Installs the Node.js dependencies listed in package.json.
+o COPY . .: Copies the rest of your application code (including server.js) into the working directory.
+o EXPOSE 3000: Informs Docker that the container will listen on port 3000.
+o CMD ["node", "server.js"]: Specifies the command to run when the container starts, executing your Node.js application.
+Step 4: Build the Docker Image
+1. Open your terminal or command prompt.
+2. Navigate to the my-node-app directory where your application files and Dockerfile are located.
+3. Run the following command to build the Docker image:
+Bash
+docker build -t my-node-app .
+o docker build: The command to build a Docker image.
+o -t my-node-app: Tags the image with the name my-node-app.
+o .: Specifies the build context (the current directory).
+4. You should see output indicating the build process. If successful, you'll see a confirmation message.
+Step 5: Run the Docker Container (Optional but Recommended for Testing)
+1. To test your image, run a container from it:
+Bash
+docker run -p 3000:3000 my-node-app
+o docker run: The command to run a Docker container.
+o -p 3000:3000: Maps port 3000 on your host to port 3000 in the container.
+o my-node-app: The name of the image.
+2. Open your web browser and go to http://localhost:3000. You should see the "Hello, Docker!" message.
+3. Press Ctrl+C in the terminal where the container is running to stop the container.
+
+
+
+Container Management & Networking:
+Step 1: Run a Container from the Image with Port Mapping
+1. Open your terminal or command prompt.
+2. Execute the following command to run a container from your image, mapping a host port to the container's exposed port:
+Bash
+docker run -d -p 8080:exposed-container-port your-image-name
+o docker run: This command creates and starts a new container from a specified image.
+o -d: This flag runs the container in "detached" mode, meaning it runs in the background and doesn't tie up your terminal.
+o -p 8080:exposed-container-port: This is the crucial part for port mapping.
+* 8080: This is the port on your host machine. You can access the application through this port from your computer's browser. You can change 8080 to any available port on your host.
+* exposed-container-port: This is the port that your application inside the container is listening on (e.g., 5000 for Flask, 3000 for Node.js, as defined in your Dockerfile's EXPOSE instruction).
+* The colon : separates the host port from the container port.
+o your-image-name: Replace this with the actual name and optional tag of the Docker image you built in Exercise 8 (e.g., my-flask-app, my-node-app).
+Example (for Flask):
+Bash
+docker run -d -p 8080:5000 my-flask-app
+Example (for Node.js):
+Bash
+docker run -d -p 8080:3000 my-node-app
+3. Docker will output a long string of characters, which is the unique Container ID of the newly created and running container.
+Step 2: Access the Application via Your Browser
+1. Open a web browser on your host machine.
+2. Go to the address http://localhost:8080.
+3. You should see the "Hello, Docker!" message displayed in your browser, which is being served by the application running inside the Docker container.
+Step 3: List Running Containers
+1. Open your terminal or command prompt (you can use a new tab/window if your previous one is still showing container logs, though the -d flag prevents this).
+2. Run the following command to list currently running containers:
+Bash
+docker ps
+o This command shows a list of running containers with information like Container ID, Image, Command, Created time, Status, Ports, and Names.
+o You should see your your-image-name container listed with status "Up...". Note the PORTS column, which will show the port mapping you configured (e.g., 0.0.0.0:8080->exposed- container-port/tcp).
+
+Step 4: Stop the Running Container
+1. In your terminal, use the docker stop command followed by the Container ID or Name of your running container. You can get the Container ID or Name from the output of docker ps.
+Bash
+docker stop container-id-or-name
+o docker stop: This command sends a stop signal to a running container. Docker will wait for a short period for the container to stop gracefully before forcefully terminating it.
+Example (replace the ID/name):
+Bash
+docker stop fabulous_fermi # Example using a generated name # OR
+docker stop a1b2c3d4e5f6 # Example using a Container ID
+2. Docker will output the Container ID or Name of the stopped container.
+Step 5: List Running and All Containers
+1. Run docker ps again:
+Bash
+docker ps
+o This time, your container should not be listed because it is no longer running.
+2. Run docker ps -a to list all containers, including those that are stopped:
+Bash
+docker ps -a
+o -a: This flag shows all containers, regardless of their status (running, stopped, exited).
+o You should now see your container listed, but its status will be "Exited (...)".
+Step 6: Inspect the Container's Network Settings
+1. Use the docker inspect command followed by the Container ID or Name of your stopped container to view detailed information about it, including network settings.
+Bash
+docker inspect container-id-or-name
+o docker inspect: This command provides a wealth of configuration and runtime information about a container (or image, volume, network, etc.) in JSON format.
+Example (replace the ID/name):
+Bash
+docker inspect fabulous_fermi # OR
+docker inspect a1b2c3d4e5f6
+2. The output will be extensive JSON. Look for the NetworkSettings section. Within this section, you can find details about the container's network configuration, including its IP address, Gateway, and the Ports mapping you configured.
+Step 7: Remove the Stopped Container
+1. To clean up and remove the stopped container, use the docker rm command followed by the Container ID or Name:
+Bash
+docker rm container-id-or-name
+o docker rm: This command removes a stopped container. You cannot remove a running container unless you use the -f (force) flag, which is generally not recommended for graceful shutdown.
+Example (replace the ID/name):
+
+Bash
+docker rm fabulous_fermi # OR
+docker rm a1b2c3d4e5f6
+2. Docker will output the Container ID or Name of the removed container.
+3. You can verify that the container is removed by running docker ps -a again; it should no longer appear in the list.
+
+Docker Volumes & Data Persistence:
+Step 1: Modify the Python Application File (app.py)
+1. Navigate to your application directory (my-flask-app from Exercise 8).
+2. Open app.py.
+3. Modify the hello_world function to also write a line to a file within a designated data directory inside the container.
+Python
+from flask import Flask import os
+from datetime import datetime app = Flask( name )
+DATA_DIR = '/app/data' # Directory inside the container for data PERSISTENCE_FILE = os.path.join(DATA_DIR, 'greeting_log.txt')
+
+# Create the data directory if it doesn't exist if not os.path.exists(DATA_DIR):
+os.makedirs(DATA_DIR)
+
+@app.route('/') def hello_world():
+message = 'Hello, Docker!'
+timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+
+# Write a timestamped greeting to the file with open(PERSISTENCE_FILE, 'a') as f:
+f.write(f"{timestamp}: {message}\n")
+
+# Also read the file content to display in the browser (optional) log_content = ""
+try:
+with open(PERSISTENCE_FILE, 'r') as f: log_content = f.read()
+except FileNotFoundError:
+log_content = "No previous greetings logged yet."
+
+
+return f"{message}<br>Log:<br><pre>{log_content}</pre>"
+
+if  name  == ' main ':
+# Use a different port like 5001 to avoid conflicts if you still
+have the old image
+# Or stop/remove the old container first app.run(debug=True, host='0.0.0.0', port=5001)
+o We define a DATA_DIR where the persistent file will live inside the container.
+o We ensure this directory exists when the app starts.
+
+o Each time the root URL is accessed, the current timestamp and greeting are appended to
+greeting_log.txt within the DATA_DIR.
+o (Optional) We read and display the content of the log file in the browser to easily verify persistence.
+o I've changed the default run port to 5001 to avoid potential conflicts with the previous image unless you stop and remove the old container first. Adjust the EXPOSE in the Dockerfile accordingly.
+Step 2: (Optional) Update the Dockerfile
+If you changed the port in app.py, update the EXPOSE instruction in your Dockerfile (my-flask- app/Dockerfile) to match:
+Dockerfile
+# ... (previous instructions) ...
+
+# Expose the port the application listens on EXPOSE 5001
+
+# Define the command to run the application CMD ["python", "app.py"]
+* If you kept the port at 5000 in app.py, no change is needed here.
+Step 3: Build the New Docker Image
+1. Open your terminal in the my-flask-app directory.
+2. Build the new image. It's a good idea to give it a new tag (like v2) or a slightly different name to distinguish it.
+Bash
+docker build -t my-flask-app:v2 .
+o Replace my-flask-app:v2 with your desired image name and tag.
+Step 4: Run the Container with a Named Volume Mount
+1. Create a Docker named volume. This is done and managed by Docker.
+Bash
+docker volume create my-app-data
+o This creates a volume named my-app-data.
+2. Run a container from your new image, mounting the named volume to the DATA_DIR location inside the container (/app/data).
+Bash
+docker run -d -p 8080:5001 -v my-app-data:/app/data my-flask-app:v2
+o -v my-app-data:/app/data: This is the volume mount.
+* my-app-data: The name of the Docker volume you created.
+* /app/data: The directory inside the container where the volume will be mounted. This should match the DATA_DIR you defined in app.py.
+o Adjust the host port (8080) and container port (5001 or 5000) as per your app.py and Dockerfile.
+o Replace my-flask-app:v2 with your image name and tag.
+3. Note the Container ID.
+Step 5: Access the Application to Write Data
+1. Open your browser and go to http://localhost:8080.
+2. You should see the "Hello, Docker!" message. Since this is the first run with this volume, the "Log" section might be empty or show the "No previous greetings logged yet" message.
+
+3. Refresh the page a few times. Each refresh should trigger writing a new line to the greeting_log.txt file within the volume. If you implemented the optional reading part, you should see new timestamps appearing in the "Log" section on each refresh.
+Step 6: Stop and Remove the Container
+1. In your terminal, stop the container using its ID or name:
+Bash
+docker stop container-id-or-name
+2. Remove the stopped container:
+Bash
+docker rm container-id-or-name
+o The container is gone, but the my-app-data volume still exists and contains the data.
+Step 7: Run a New Container Mounting the Same Volume
+1. Run a new container from the same image (my-flask-app:v2), mounting the same named volume (my-app-data):
+Bash
+docker run -d -p 8080:5001 -v my-app-data:/app/data my-flask-app:v2
+o Notice the command is identical to the one in Step 4.
+2. Note the ID of this new container (it will be different from the previous one).
+Step 8: Verify Data Persistence
+1. Open your browser and go to http://localhost:8080 again.
+2. You should see the "Hello, Docker!" message, and more importantly, the "Log" section should show all the timestamps and greetings from when you accessed the application in the previous container instance.
+3. Refresh the page again, and you'll see new entries added to the log, demonstrating that the new container is writing to and reading from the persistent volume created by the first container.
+
+Docker Compose for Multi-Container App:
+Step 1: Create Your Project Directory
+1. Create a new directory for your multi-container project (e.g., my-multi-app).
+2. Navigate into this new directory in your terminal.
+Bash
+mkdir my-multi-app cd my-multi-app
+Step 2: Create the docker-compose.yml File
+1. Inside the my-multi-app directory, create a file named docker-compose.yml (ensure the name is exactly this, lowercase, with the .yml extension).
+2. Open docker-compose.yml in your text editor.
+Step 3: Define Services in docker-compose.yml
+The docker-compose.yml file uses YAML syntax. It starts with a version, followed by a services key where you define each container as a service.
+Here are examples for two common combinations. Choose one based on the web app image you created in Exercise 8/9.
+Option A: Python Flask App with Redis Database
+If your web app is Python Flask (exposed port 5000, image my-flask-app:v2): YAML
+version: '3.8' # Specify the Compose file format version
+
+services:
+# Define the web service web:
+image: my-flask-app:v2 # Use the image you built ports:
+  - "8080:5000" # Map host port 8080 to container port 5000 volumes:
+# Optional: Bind mount your application code for easier development # - ./my-flask-app:/app
+# Mount the named volume for persistence (if you used it in Exercise
+9)
+- my-app-data:/app/data # Assumes /app/data is the data dir in the
+container
+depends_on:
+- redis # Ensure the redis service starts before the web service
+
+# Define the database service (Redis) redis:
+image: redis:latest # Use the official Redis image ports:
+       - "6379:6379" # Optional: Map Redis port to host if you want to access it directly
+volumes:
+# Mount a named volume to persist Redis data
+  - redis-data:/data # /data is the default Redis data directory # volumes:
+
+# Alternative: Bind mount for Redis data (less common) # - ./redis-data:/data
+
+# Define the named volumes (if you used them in Exercise 9 or above) volumes:
+my-app-data: # Volume for web app data redis-data: # Volume for Redis data
+* version: '3.8': Specifies the Compose file version.
+* services:: This section defines the different containers that make up your application.
+* web: and redis:: These are the names of your services. Within the Docker Compose network, the web
+service can reach the redis service using the hostname redis.
+* image:: Specifies the Docker image to use for this service.
+* ports:: Maps ports from the host to the container (HOST_PORT:CONTAINER_PORT).
+* volumes:: Configures data persistence using either named volumes (volume_name:/path/in/container)	or	bind	mounts (./host/path:/path/in/container). We define the named volumes at the bottom level.
+* depends_on:: Ensures that the redis service is started before the web service. This is often necessary because the web app might try to connect to the database on startup.
+* volumes: (at the bottom): Declares the named volumes used by the services. Docker Compose will create these volumes if they don't exist.
+Option B: Node.js Express App with Postgres Database
+If your web app is Node.js Express (exposed port 3000, image my-node-app): YAML
+version: '3.8' # Specify the Compose file format version
+
+services:
+# Define the web service web:
+image: my-node-app # Use the image you built ports:
+  - "8080:3000" # Map host port 8080 to container port 3000 volumes:
+# Optional: Bind mount your application code for easier development # - ./my-node-app:/app
+depends_on:
+  - db # Ensure the db service starts before the web service environment:
+# Optional: Pass database connection details as environment variables # These would be used by your Node.js app if it connected to Postgres POSTGRES_HOST: db # The service name is the hostname
+POSTGRES_USER: myuser POSTGRES_PASSWORD: mypassword POSTGRES_DB: mydatabase
+
+# Define the database service (Postgres) db:
+image: postgres:latest # Use the official Postgres image ports:
+
+  - "5432:5432" # Optional: Map Postgres port to host volumes:
+# Mount a named volume to persist Postgres data
+       - postgres-data:/var/lib/postgresql/data # Default Postgres data directory
+environment:
+# Set environment variables for Postgres initialization POSTGRES_USER: myuser
+POSTGRES_PASSWORD: mypassword POSTGRES_DB: mydatabase
+# For production, use secrets or a more secure method for passwords
+
+# Define the named volumes volumes:
+postgres-data: # Volume for Postgres data
+* The structure is similar to the Redis example.
+* image: postgres:latest: Uses the official Postgres image.
+* environment:: This section is used to pass environment variables to the container. Postgres images use these variables (POSTGRES_USER, POSTGRES_PASSWORD, POSTGRES_DB) to set up the database and user during the first startup. Your web application would typically read these same environment variables to connect to the database.
+* postgres-data:/var/lib/postgresql/data: Mounts a named volume to the default data directory used by Postgres.
+Step 4: Save the docker-compose.yml File
+Save the docker-compose.yml file in your my-multi-app directory.
+Step 5: Start the Multi-Container Application
+1. Open your terminal and navigate to the my-multi-app directory where your docker- compose.yml file is located.
+2. Run the following command:
+Bash
+docker-compose up
+o docker-compose up: This command reads the docker-compose.yml file, creates the necessary networks and volumes, builds images if required (not in this case, as we use existing images), and starts the services defined in the file.
+o By default, docker-compose up runs in the foreground, showing the logs from all services.
+o If you want to run it in detached mode (in the background), add the -d flag: docker-compose up -d.
+3. Observe the output. Docker Compose will show the creation of the network, volumes, and the startup of each service. You should see logs from your web application and the database service.
+Step 6: Access the Web Application
+1. Once the services are running, open your web browser and go to http://localhost:8080 (or the host port you mapped for your web service).
+2. You should see your web application responding.
+Step 7: Verify Service Networking (Conceptual)
+While your simple "Hello World" app might not explicitly interact with the database yet, Docker Compose has set up a network where:
+
+* The web container can resolve the hostname redis (or db in the Postgres example) to the IP address of the corresponding database container.
+* Your web application code, if it were written to connect to a database, would use redis (or db) as the database host, along with the correct port (e.g., 6379 for Redis, 5432 for Postgres), username, and password (if applicable).
+Step 8: Stop and Remove the Multi-Container Application
+1. Open your terminal and navigate back to the my-multi-app directory if you are not already there.
+2. If you ran docker-compose up without -d, simply press Ctrl+C in the terminal where it's running. Docker Compose will start the shutdown process.
+3. If you ran with -d or after pressing Ctrl+C, run the following command to stop and remove the containers, networks, and volumes defined in the docker-compose.yml file:
+Bash
+docker-compose down
+o docker-compose down: This command stops the running containers and removes the containers and the network created by docker-compose up.
+o By default, docker-compose down does not remove volumes. This is to prevent accidental data loss.
+4. If you want to remove the volumes as well (e.g., for a clean start), add the -v flag:
+Bash
+docker-compose down -v
+o Use this with caution, as it will delete your persistent data.
+
+Container Orchestration with Kubernetes
+Kubernetes Pod & Deployment:
+Step 1: Set Up a Local Kubernetes Cluster
+You need a local Kubernetes cluster to deploy to. The most common options are:
+* Minikube: A tool that runs a single-node Kubernetes cluster inside a VM on your laptop.
+* Kind (Kubernetes in Docker): Runs local Kubernetes clusters using Docker containers as "nodes".
+* Docker Desktop: Includes a built-in Kubernetes cluster (can be enabled in settings).
+Choose ONE of these and follow its installation instructions. Minikube is often a good starting point for learning.
+* If using Minikube: Start the cluster with minikube start.
+* If using Docker Desktop: Enable Kubernetes in the Docker Desktop settings. Ensure kubectl is configured to use the Docker Desktop context (kubectl config use docker-desktop).
+   * If using Kind: Create a cluster with kind create cluster. Verify your kubectl is connected to your local cluster:
+Bash
+kubectl cluster-info kubectl get nodes
+You should see information about your local cluster and its node(s).
+Step 2: Make Your Docker Image Accessible to the Cluster
+Kubernetes needs to be able to pull the Docker image you created. For local development with Minikube or Kind, the easiest way is often to use the cluster's Docker daemon or load the image directly. Pushing to a public registry like Docker Hub is the standard production method but requires an account and extra steps.
+Option A (Recommended for Local Testing with Minikube/Kind): Use the Cluster's Docker Daemon
+This method avoids pushing to a registry by building/using the image directly within the cluster's Docker environment.
+* If using Minikube:
+1. Open a new terminal.
+2. Run the following command to point your terminal's Docker commands to the Docker daemon inside the Minikube VM:
+Bash
+eval $(minikube docker-env)
+3. Now, any docker build or docker images command in this terminal will interact with the Docker daemon inside Minikube.
+4. Ensure your image (my-flask-app:v2 or my-node-app) exists when you run docker images in this terminal. If not, rebuild it using the docker build command from Exercise 8 in this terminal.
+* If using Kind:
+1. Load your image into the Kind cluster:
+Bash
+kind load docker-image your-image-name:your-tag
+Replace your-image-name:your-tag with the actual name and tag of your image (e.g.,
+my-flask-app:v2).
+Option B (Standard for Production, also works locally): Push to a Docker Registry (like Docker Hub)
+* Requires a Docker Hub account (or access to another registry).
+* Log in to Docker Hub: docker login
+
+* Tag your local image with your Docker Hub username and a repository name:
+Bash
+docker tag your-image-name:your-tag your-dockerhub-username/your-repo- name:your-tag
+Replace placeholders with your details (e.g., docker tag my-flask-app:v2 myusername/my- web-app:v2).
+* Push the tagged image to Docker Hub:
+Bash
+docker push your-dockerhub-username/your-repo-name:your-tag
+* In your Kubernetes YAML (Step 3), you will use the full image name (e.g., myusername/my-web- app:v2).
+Step 3: Create a Kubernetes Deployment YAML File
+1. Create a new directory for your Kubernetes manifests (e.g., k8s-manifests) inside your project directory (my-multi-app).
+2. Inside k8s-manifests, create a file named web-deployment.yaml with the following content: YAML
+apiVersion: apps/v1 # API version for Deployment
+kind: Deployment # Type of Kubernetes object we are creating metadata:
+name: web-app-deployment # A name for your Deployment labels:
+     app: web-app # Labels to identify this Deployment spec:
+replicas: 2 # The desired number of Pods to run selector: # How the Deployment finds the Pods it manages
+matchLabels:
+app: web-app # Selects Pods with this label
+template: # The template for the Pods that the Deployment will create metadata:
+labels:
+     app: web-app # Labels for the Pod (used by the selector) spec:
+containers: # List of containers in the Pod
+- name: web-app-container # Name of the container
+# ** IMPORTANT: Replace with your image name and tag **
+            # If using Minikube/Kind's daemon, use the local image name (e.g., my-flask-app:v2)
+            # If using Docker Hub, use the full path (e.g., myusername/my- web-app:v2)
+image: your-image-name:your-tag ports:
+              - containerPort: exposed-container-port # The port your application listens on inside the container (e.g., 5000 or 3000)
+            # If using an image from a private registry, you might need imagePullSecrets here
+            imagePullPolicy: IfNotPresent # Kubernetes default policy, pulls only if not already present. Good for local testing.
+
+# Use Always for production to
+ensure latest image.
+3. Replace the placeholders:
+o your-image-name:your-tag: Replace with the name and tag of the Docker image you are using (e.g., my-flask-app:v2, my-node-app, or the full Docker Hub path like myusername/my-web-app:v2).
+o exposed-container-port: Replace with the port your application listens on inside the container (e.g., 5000 for Flask, 3000 for Node.js, as specified in your Dockerfile's EXPOSE).
+Step 4: Apply the YAML Manifest
+1. Open your terminal and navigate to the k8s-manifests directory where you saved web- deployment.yaml.
+2. Apply the Deployment using kubectl:
+Bash
+kubectl apply -f web-deployment.yaml
+o kubectl apply -f: This command creates or updates Kubernetes resources based on the provided YAML file.
+3. You should see output confirming the creation of the deployment, like deployment.apps/web- app-deployment created.
+Step 5: Verify the Pods Are Created and Running
+1. Use kubectl get pods to list the Pods in your cluster:
+Bash
+kubectl get pods
+2. Initially, the output might show Pods in a "Pending" or "ContainerCreating" state. Wait a few moments and run the command again.
+3. Eventually, you should see output similar to this:
+4. NAME	READY	STATUS	RESTARTS	AGE
+5. web-app-deployment-xxxxxxxxxx-abcde	1/1	Running	0	1m
+6. web-app-deployment-xxxxxxxxxx-fghij	1/1	Running	0	1m
+o You should see two Pods (because replicas: 2) with names starting with your deployment name (web-app-deployment), followed by a unique hash.
+o The STATUS column should be Running, and READY should be 1/1 (meaning the one container in the Pod is ready).
+You have now successfully deployed your Docker image as a multi-replica application onto your local Kubernetes cluster using a Deployment!
+Step 6: Clean Up (Optional but Recommended)
+When you are finished, you can remove the Deployment and the Pods it created:
+1. In your terminal, navigate to the k8s-manifests directory.
+2. Run the kubectl delete command:
+Bash
+kubectl delete -f web-deployment.yaml
+o This will stop and remove the Deployment and the Pods managed by it.
+3. You can verify they are gone with kubectl get pods.
+If you want to stop your local cluster (e.g., Minikube), use its specific command (e.g., minikube stop).
+
+Kubernetes Service & Networking:
+Step 1: Create a Kubernetes Service YAML File
+1. Navigate to your Kubernetes manifests directory (e.g., my-multi-app/k8s-manifests).
+2. Create a new file named web-service.yaml with the following content: YAML
+apiVersion: v1 # API version for Service
+kind: Service # Type of Kubernetes object we are creating metadata:
+name: web-app-service # A name for your Service labels:
+     app: web-app # Labels to identify this Service spec:
+selector: # How the Service finds the Pods to route traffic to
+     app: web-app # Selects Pods with this label (should match your Deployment's Pod template labels)
+ports: # Define the ports for the Service
+     - port: 80 # The port the Service itself will listen on (within the cluster)
+       targetPort: exposed-container-port # The port on the Pod's container that the Service will send traffic to (e.g., 5000 or 3000)
+     # protocol: TCP # Default is TCP, can be explicitly defined type: NodePort # The type of Service to expose it outside the cluster
+3. Replace the placeholders:
+o exposed-container-port: Replace with the port your application container listens on (the same one you used for containerPort in your Deployment YAML, e.g., 5000 or 3000).
+Explanation of the Service YAML:
+* apiVersion: v1 and kind: Service: Define this as a Kubernetes Service object.
+* metadata.name: Assigns a name to the Service (web-app-service).
+* spec.selector: This is how the Service discovers which Pods are part of this service. It looks for Pods that match the specified labels. This must match the labels defined in the template.metadata.labels section of your Deployment YAML (app: web-app).
+* spec.ports: Defines how traffic is handled by the Service.
+o port: 80: This is the port that the Service itself listens on within the cluster's internal network.
+Other Pods within the same cluster can access this Service at web-app-service:80.
+o targetPort: exposed-container-port: This is the port on the container inside the Pod that the Service will forward traffic to. This must match the containerPort defined in your Deployment YAML.
+* spec.type: NodePort: This Service type makes the Service accessible from outside the cluster. Kubernetes will allocate a static port on each Node (the "NodePort") that forwards traffic to this Service.
+Step 2: Apply the Service YAML Manifest
+1. Open your terminal and navigate to the k8s-manifests directory.
+2. Apply the Service using kubectl:
+Bash
+kubectl apply -f web-service.yaml
+3. You should see output confirming the creation of the service, like service/web-app-service created.
+
+Step 3: Find the Access Information for the Service
+1. Use kubectl get service (or kubectl get svc) to list the Services in your current namespace:
+Bash
+kubectl get service
+2. Look for the Service named web-app-service. The output will show its TYPE, CLUSTER-IP, EXTERNAL-IP, PORT(S), and AGE.
+3. NAME	TYPE	CLUSTER-IP	EXTERNAL-IP	PORT(S) AGE
+4. kubernetes	ClusterIP	10.96.0.1	<none>	443/TCP Xd
+5. web-app-service NodePort	10.96.XX.XX <none>	80:NodePort/TCP Xs
+6. Pay close attention to the PORT(S) column for your web-app-service. It will show something like
+80:3XXXX/TCP.
+o 80: This is the Service's internal ClusterIP port.
+o 3XXXX: This is the dynamically assigned NodePort. Kubernetes assigns a port in a specific range (usually 30000-32767) on each Node in your cluster. Traffic sent to this port on any Node will be forwarded to your Service, and then to the Pods.
+Step 4: Access Your Application Running in the Pods
+To access your application via the NodePort Service, you need the IP address of one of your Kubernetes Nodes and the allocated NodePort.
+* If using Minikube:
+1. Get the IP address of the Minikube VM:
+Bash
+minikube ip
+This will output an IP address (e.g., 192.168.59.100).
+2. Get the URL to access the service easily:
+Bash
+minikube service web-app-service
+This command will automatically open your application in your web browser. This is the easiest way with Minikube.
+3. Alternatively, manually construct the URL using the Minikube IP and the NodePort from
+kubectl get service: http://<minikube-ip>:<nodeport>.
+* If using Docker Desktop Kubernetes:
+o Docker Desktop often makes NodePort services available directly on localhost at the assigned NodePort.
+o Find the NodePort using kubectl get service.
+o Access the application at http://localhost:<nodeport>.
+* If using Kind:
+o Accessing NodePort services with Kind requires port forwarding or other network configurations depending on your setup. The simplest might be to use kubectl port- forward for testing a single Pod, but for accessing via the Service, checking Kind's documentation for accessing services from the host is recommended. For a basic NodePort, accessing localhost:<nodeport> might work depending on your setup.
+4. Open your web browser and navigate to the appropriate address and port. You should see your application's response ("Hello, Docker!").
+
+Step 5: Clean Up (Optional but Recommended)
+When you are finished, you can remove the Service:
+1. In your terminal, navigate to the k8s-manifests directory.
+2. Run the kubectl delete command:
+Bash
+kubectl delete -f web-service.yaml
+3. You can verify it's removed with kubectl get service.
+Integrated DevOps and Advanced Practices
+CI/CD: Jenkins Pipeline building Docker Image:
+Step 1: Access and Edit Your Pipeline Configuration
+1. Log in to your Jenkins instance.
+2. Navigate to the Dashboard.
+3. Find your existing Declarative pipeline job and click on its name.
+4. Click on "Configure" in the left-hand menu.
+5. Scroll down to the "Pipeline" section where you define your pipeline script.
+Step 2: Add a New Stage for Building the Docker Image
+1. Inside the stages block, add a new stage after your existing stages (like build, test, etc., if you have them). Name this stage something descriptive like 'Build Docker Image'.
+2. Within this new stage, add a steps block.
+3. Inside the steps block, use the sh step (for Linux/macOS agents) or bat step (for Windows agents) to execute the docker build command.
+Your pipeline script will now look something like this:
+Groovy
+pipeline {
+agent any // Or specify a label for an agent with Docker
+
+// Add parameters block here if you did Exercise 7
+// parameters {
+     //	string(name: 'GREETING_NAME', defaultValue: 'World', description: 'The name to use in the greeting')
+// }
+
+stages {
+// Your existing stages (if any)
+// stage('Greeting') {
+//	steps {
+//	echo "Hello ${params.GREETING_NAME}"
+//	}
+// }
+
+stage('Build Docker Image') { steps {
+                   // Navigate to the directory containing your Dockerfile and application code
+// Assumes your Dockerfile is at the root of the Git
+repo
+
+// If your code/Dockerfile is in a subdirectory, use
+`dir('your-subdir') { ... }`
+                   sh	'docker	build	-t	your-docker-image- name:${BUILD_NUMBER} .'
+// Replace 'your-docker-image-name' with your desired
+image name
+// ':${BUILD_NUMBER}' tags the image with the Jenkins
+build number, which is useful for tracking
+                   // '.' indicates the build context is the current directory (root of the workspace)
+}
+}
+
+// Add more stages here if needed
+}
+// Add post block here if needed
+}
+4. Crucially, replace your-docker-image-name with the desired name for your Docker image (e.g., my-web-app, my-flask-app). Using :${BUILD_NUMBER} as a tag is a common practice to version your Docker images automatically with the Jenkins build number.
+5. If your Dockerfile and application code are not at the root of your Git repository, you need to navigate to that directory within the steps block using the dir step:
+Groovy
+stage('Build Docker Image') { steps {
+          dir('path/to/your/app') { // Replace 'path/to/your/app' with the actual path
+sh 'docker build -t your-docker-image-name:${BUILD_NUMBER}
+.'
+}
+}
+}
+Step 3: (Bonus) Add Steps to Push the Image to a Docker Registry
+Pushing the image to a registry is essential for deploying it to other environments (like Kubernetes). This requires configuring credentials in Jenkins and adding more sh or bat steps.
+1. Configure Docker Registry Credentials in Jenkins:
+o In the Jenkins Dashboard, go to "Manage Jenkins" -> "Manage Credentials".
+o Choose a domain (e.g., "global").
+o Click "Add Credentials".
+o Select the kind "Username with password".
+o Enter your Docker Registry Username and Password.
+o Give this credential a unique ID (e.g., dockerhub-creds). You will use this ID in your pipeline script.
+o Add a description.
+o Click "OK".
+2. Add the Push Stage to Your Pipeline: Add a new stage after the 'Build Docker Image' stage.
+Groovy
+pipeline {
+
+agent any // Or specify a label for an agent with Docker
+// ... parameters and other stages ... stage('Build Docker Image') {
+steps {
+script { // Use a script block if you need Groovy variables def imageName = "your-docker-image-name" // Define
+image name as a variable
+def imageTag = "${BUILD_NUMBER}"
+def fullImageName = "${imageName}:${imageTag}"
+                   def	registryImageName	=	"your-dockerhub- username/${imageName}:${imageTag}" // Full name for the registry
+
+// If your code/Dockerfile is in a subdirectory, use
+`dir('your-subdir') { ... }`
+sh "docker build -t ${fullImageName} ."
+
+
+
+registry
+
+
+
+}
+}
+
+// Optional: Tag the image specifically for the sh "docker tag ${fullImageName} ${registryImageName}"
+// ... push step will go here ...
+}
+
+
+stage('Push Docker Image') { steps {
+script {
+def imageName = "your-docker-image-name" def imageTag = "${BUILD_NUMBER}"
+                    def	registryImageName	=	"your-dockerhub- username/${imageName}:${imageTag}" // Full name for the registry
+                    def	latestImageName	=	"your-dockerhub- username/${imageName}:latest" // Optional: Tag as latest
+
+// Log in to the Docker registry using Jenkins
+credentials
+// The `docker.withRegistry` step is a more secure way
+in Declarative pipelines
+// using the configured credentials ID. docker.withRegistry('https://index.docker.io/v1/',
+'dockerhub-creds') { // Replace 'dockerhub-creds' with your credential ID
+// Push the specific build-tagged image sh "docker push ${registryImageName}"
+
+// Optional: Push with 'latest' tag as well
+
+
+${latestImageName}"
+
+}
+}
+}
+}
+
+sh	"docker	tag	${registryImageName} sh "docker push ${latestImageName}"
+
+// Add post block here if needed
+}
+o Replace your-docker-image-name with your base image name.
+o Replace your-dockerhub-username with your Docker Hub username.
+o Replace 'dockerhub-creds' with the ID of the credentials you configured in Jenkins.
+o docker.withRegistry(...): This is a Declarative Pipeline step that securely handles Docker registry authentication using credentials stored in Jenkins. The first argument is the registry URL (use https://index.docker.io/v1/ for Docker Hub), and the second is the credential ID. The commands inside the block are executed with the authentication already set up.
+Step 4: Save Your Pipeline Configuration
+1. Scroll down to the bottom of the job configuration page.
+2. Click the "Save" or "Apply" button to save the changes to your pipeline script.
+Step 5: Run the Jenkins Job
+1. Navigate back to the job's main page.
+2. Click on "Build Now" (or "Build with Parameters" if you added parameters in Exercise 7 and want to run with default values).
+3. If you have parameters, provide the values and click "Build".
+Step 6: Verify the Build and Push in the Console Output
+1. Once the build starts, click on the build number in the "Build History".
+2. Click on "Console Output" in the left-hand menu.
+3. Observe the output as the pipeline executes each stage.
+4. Look for the output from the 'Build Docker Image' stage. You should see the steps of the docker build
+command being executed, ending with a message indicating the image was successfully built and tagged.
+5. (Bonus) Look for the output from the 'Push Docker Image' stage. You should see messages indicating that the Docker client is logging in (handled by docker.withRegistry) and then the progress and confirmation of the docker push commands.
+6. (Bonus) You can also log in to your Docker Registry account (like Docker Hub) in your web browser and check your repositories to confirm that the new image tags have been pushed.
+
+Basic Infrastructure as Code (IaC) with Terraform:
+Step 1: Install Terraform
+Terraform is distributed as a single binary. The installation process varies slightly depending on your operating system.
+* On macOS (using Homebrew):
+Bash
+brew tap hashicorp/tap
+brew install hashicorp/tap/terraform
+* On Windows (using Chocolatey):
+PowerShell
+choco install terraform
+* On Linux (Debian/Ubuntu):
+Bash
+sudo apt-get update && sudo apt-get install -y gnupg software- properties-common
+wget -O- https://apt.releases.hashicorp.com/gpg | \ gpg --dearmor | \
+     sudo tee /usr/share/keyrings/hashicorp-archive-keyring.gpg gpg --no-default-keyring \
+--keyring /usr/share/keyrings/hashicorp-archive-keyring.gpg \
+--fingerprint
+echo	"deb	[signed-by=/usr/share/keyrings/hashicorp-archive- keyring.gpg] \
+https://apt.releases.hashicorp.com $(lsb_release -cs) main" | \ sudo tee /etc/apt/sources.list.d/hashicorp.list
+sudo apt update
+sudo apt-get install terraform
+* On Linux (RHEL/CentOS):
+Bash
+sudo yum install -y yum-utils
+sudo	yum-config-manager	--add-repo https://rpm.releases.hashicorp.com/RHEL/hashicorp.repo
+sudo yum -y install terraform
+* Other Operating Systems: Download the appropriate package from the official Terraform website (https://www.terraform.io/downloads) and add the directory containing the terraform executable to your system's PATH.
+After installation, verify that Terraform is installed correctly by opening a new terminal and running:
+Bash
+terraform --version
+You should see the installed Terraform version.
+Step 2: Create a Project Directory
+1. Create a new directory for your Terraform project (e.g., my-terraform-iac).
+2. Navigate into this directory in your terminal.
+Bash
+mkdir my-terraform-iac cd my-terraform-iac
+
+Step 3: Create the Terraform Configuration File (main.tf)
+1. Inside the my-terraform-iac directory, create a file named main.tf (the .tf extension is important).
+2. Open main.tf in your text editor and add the following content:
+Terraform
+# Define the required providers terraform {
+required_providers { local = {
+source = "hashicorp/local"
+version = "2.4.0" # Specify a version
+}
+}
+}
+
+# Configure the local provider provider "local" {
+  # Configuration options for the local provider (none needed for basic usage)
+}
+
+# Define a local_file resource
+resource "local_file" "my_example_file" {
+filename = "example.txt" # The name of the file to create
+content = "Hello, Terraform IaC!" # The content to write to the file
+}
+Explanation of main.tf:
+* terraform {} block: Configures settings for Terraform itself.
+o required_providers {}: Declares the providers your configuration depends on. We need the local provider to interact with the local filesystem.
+* local: The local name you'll use for this provider.
+* source = "hashicorp/local": Specifies where to find the provider (HashiCorp's official registry).
+* version = "2.4.0": Defines the required version of the provider. It's good practice to pin provider versions.
+* provider "local" {} block: Configures the specified provider. For the local provider, there are no mandatory configuration options for this simple use case.
+* resource "local_file" "my_example_file" {} block: This is the core of your configuration - defining a resource.
+o resource: Keyword indicating you are defining a resource.
+o "local_file": The type of resource being created, provided by the local provider.
+o "my_example_file": The local name you give this specific instance of the resource within your Terraform code. This name is used to reference the resource elsewhere in your configuration.
+o Inside the block are arguments specific to the local_file resource type:
+* filename = "example.txt": The path and name of the file to create on your local machine.
+* content = "Hello, Terraform IaC!": The string content that will be written to the file.
+
+Step 4: Initialize Terraform
+1. Open your terminal and ensure you are in the my-terraform-iac directory.
+2. Run the terraform init command:
+Bash
+terraform init
+o terraform init: This command initializes a Terraform working directory. It downloads the required providers (in this case, the hashicorp/local provider) and sets up the backend for state management.
+3. You should see output indicating that Terraform is initializing the backend and installing the
+hashicorp/local provider. It should finish with "Terraform has been successfully initialized!".
+Step 5: Plan the Changes
+1. Run the terraform plan command:
+Bash
+terraform plan
+o terraform plan: This command creates an execution plan. It reads your configuration files (main.tf), compares the desired state (defined in your code) with the current state (Terraform keeps track of the real-world infrastructure in a state file, which is currently empty), and determines what actions are necessary to achieve the desired state.
+2. The output will show you the planned actions. You should see a plan to "create" the local_file.my_example_file resource, detailing the properties that will be set (filename and content). It will indicate Plan: 1 to add, 0 to change, 0 to destroy.
+Step 6: Apply the Changes
+1. Run the terraform apply command:
+Bash
+terraform apply
+o terraform apply: This command executes the actions proposed in the execution plan.
+2. Terraform will show you the plan again and prompt you to confirm the action by typing yes.
+3. Type yes and press Enter.
+4. Terraform will proceed to create the resource. You should see output indicating the creation of
+local_file.my_example_file.
+5. Verify the file was created: Look in your my-terraform-iac directory. You should find a new file named example.txt. Open it, and you will see the content "Hello, Terraform IaC!".
+Step 7: Modify the Content and Re-apply
+1. Open main.tf again in your text editor.
+2. Modify the content argument of the local_file resource to something different:
+Terraform
+resource "local_file" "my_example_file" { filename = "example.txt"
+  content = "This content has been updated by Terraform!" # Modified content
+}
+3. Save the main.tf file.
+4. Run terraform plan again:
+Bash
+terraform plan
+
+o This time, the plan will show that Terraform needs to "change" the local_file.my_example_file resource, specifically updating the content. You will see Plan: 0 to add, 1 to change, 0 to destroy.
+5. Run terraform apply again:
+Bash
+terraform apply
+6. Type yes to confirm.
+7. Terraform will update the resource. Open example.txt again; its content should now be updated.
+Step 8: Destroy the Resource
+1. When you are finished, you can use Terraform to destroy the infrastructure it created.
+2. Run the terraform destroy command:
+Bash
+terraform destroy
+o terraform destroy: This command proposes a plan to destroy all resources managed by the current Terraform configuration in this working directory.
+3. Terraform will show you the plan to "destroy" the local_file.my_example_file resource. You will see Plan: 0 to add, 0 to change, 1 to destroy.
+4. Terraform will prompt you to confirm the action by typing yes.
+5. Type yes and press Enter.
+6. Terraform will proceed to destroy the resource. You should see output indicating the destruction of
+local_file.my_example_file.
+7. Verify the file was removed: Look in your my-terraform-iac directory; example.txt should be gone.
+
+
+
+
